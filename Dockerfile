@@ -33,8 +33,12 @@ RUN poetry install --no-root --no-dev
 # Copy application source code
 COPY . /app
 
+# Copy SSL certificate and key into the container (adjust paths accordingly)
+COPY cert.pem /app/cert.pem
+COPY key.pem /app/key.pem
+
 # Expose the FastAPI port
 EXPOSE 8000
 
-# Command to run the application
-CMD ["poetry", "run", "uvicorn", "app.main:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
+# Command to run the application over HTTPS with SSL
+CMD ["poetry", "run", "uvicorn", "app.main:app", "--reload", "--host", "0.0.0.0", "--port", "8000", "--ssl-keyfile", "/app/key.pem", "--ssl-certfile", "/app/cert.pem"]

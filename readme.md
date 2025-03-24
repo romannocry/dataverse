@@ -1,0 +1,1 @@
+uvicorn app.main:app --host 127.0.0.1 --port 8000 --ssl-keyfile=key.pem --ssl-certifile=cert.pem --reload
