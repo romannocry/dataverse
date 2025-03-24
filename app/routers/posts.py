@@ -8,8 +8,11 @@ from fastapi import (
 from sqlalchemy.orm import Session
 from uuid import UUID
 
-from app import models, schemas
+#from ..models import post
+#from ..schemas import post
 from app.database import get_db
+from .. import schemas, models
+
 
 router = APIRouter(
     prefix="/posts",
