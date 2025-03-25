@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Client</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #messages { border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: scroll; }
+    </style>
+</head>
+<body>
+    <h2>WebSocket Data</h2>
+    <div id="messages"></div>
+
+    <script>
+        const socket = new WebSocket('wss://127.0.0.1:8000/ws/'); // Change to your WebSocket server URL
+
+        socket.onopen = function() {
+            console.log("Connected to WebSocket server.");
+        };
+
+        socket.onmessage = function(event) {
+            const messageDiv = document.createElement("div");
+            messageDiv.textContent = event.data;
+            document.getElementById("messages").appendChild(messageDiv);
+        };
+
+        socket.onerror = function(error) {
+            console.error("WebSocket error:", error);
+        };
+
+        socket.onclose = function() {
+            console.log("WebSocket connection closed.");
+        };
+    </script>
+</body>
+</html>

@@ -7,6 +7,8 @@ from typing import Annotated
 from .models import post
 from .database import engine
 from .routers.posts import router
+from .routers.websocket import ws_router
+
 #from .config.config import settings
 
 post.Base.metadata.create_all(bind=engine)
@@ -28,6 +30,7 @@ app = FastAPI()
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 app.include_router(router)
+app.include_router(ws_router)
 
 @app.get("/ping/")
 async def ping(token: Annotated[str, Depends(oauth2_scheme)]):
