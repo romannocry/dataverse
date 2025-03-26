@@ -1,13 +1,16 @@
 from uuid import UUID
 from datetime import datetime
 from sqlmodel import Field, SQLModel
+from typing import Optional
+
 import uuid
 
 # ✅ Base Model (Not used directly)
 class PostBase(SQLModel):
     content: str
     title: str
-    published: bool
+    published: Optional[bool] = None
+    id: Optional[UUID] = None
 
 # ✅ Input Model (for creating posts) → id and created_at are NOT included
 class CreatePost(PostBase):

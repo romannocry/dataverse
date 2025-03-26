@@ -2,6 +2,7 @@ from fastapi import Depends, FastAPI
 from fastapi.security import OAuth2PasswordBearer
 import psycopg2
 from typing import Annotated
+from fastapi.middleware.cors import CORSMiddleware
 
 
 from .models import post
@@ -31,6 +32,14 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 app.include_router(router)
 app.include_router(ws_router)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[str(origin) for origin in ["http://localhost", "http://localhost:5173","http://localhost:5174/"]],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/ping/")
 async def ping(token: Annotated[str, Depends(oauth2_scheme)]):

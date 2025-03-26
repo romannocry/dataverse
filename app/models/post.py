@@ -24,7 +24,7 @@ class Post(Base):
     id =  Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     title = Column(String)
     content = Column(String)
-    published = Column(Boolean)
+    published = Column(Boolean, nullable=True)  # Optional field
     created_at = Column(TIMESTAMP(timezone=True), server_default=text("now()"))
     #created_at =datetime.now()
     #created_at= Column(
