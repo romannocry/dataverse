@@ -1,1 +1,2 @@
-from .post import CreatePost
+from .post import CreatePost,Post
+from .test import CreateTest,Test

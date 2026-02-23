@@ -12,9 +12,9 @@ DB_NAME=os.getenv("DB_NAME")
 
 # NOTE: Switch 'db' to your localhost if running locally
 #SQLALCHEMY_DATABASE_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@db:5432/{DB_NAME}"
-#SQLALCHEMY_DATABASE_URL = 'postgresql://postgres:Bengidoga1@localhost/romanmedioni'
+SQLALCHEMY_DATABASE_URL = 'postgresql://postgres:Bengidoga1@localhost/romanmedioni'
 #SQLALCHEMY_DATABASE_URL = os.getenv("SQLALCHEMY_DATABASE_URL", "postgresql://postgres:postgres@db:5432/testdb")
-SQLALCHEMY_DATABASE_URL = os.getenv("SQLALCHEMY_DATABASE_URL", "postgresql://postgres:postgres@192.168.12.143:5432/testdb")
+#SQLALCHEMY_DATABASE_URL = os.getenv("SQLALCHEMY_DATABASE_URL", "postgresql://postgres:postgres@192.168.12.102:5432/testdb")
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 

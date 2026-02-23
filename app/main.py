@@ -5,14 +5,17 @@ from typing import Annotated
 from fastapi.middleware.cors import CORSMiddleware
 
 
-from .models import post
+from .models import post,test
 from .database import engine
 from .routers.posts import router
 from .routers.websocket import ws_router
+from .routers.tests import router2
 
 #from .config.config import settings
 
 post.Base.metadata.create_all(bind=engine)
+test.Base.metadata.create_all(bind=engine)
+
 init_oauth = {
     "clientId": "facObec-936a-446-9500-44f0d935f462",
     "scopes": "openid profile",
@@ -32,6 +35,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 app.include_router(router)
 app.include_router(ws_router)
+app.include_router(router2)
 
 app.add_middleware(
     CORSMiddleware,
